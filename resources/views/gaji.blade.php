@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <div class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/profil') }}">PROFIL PEGAWAI</a>
+                    <a class="nav-link" href="{{ url('/') }}">PROFIL PEGAWAI</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ url('/gaji') }}">GAJI PEGAWAI</a>
@@ -22,45 +22,6 @@
             </div>
         </div>
     </nav>
-    <?php
-    $pegawai = [
-        [
-            'pegawai' => '2022001',
-            'nama' => 'Kurt Cobain',
-            'kode' => 'D',
-        ],
-        [
-            'pegawai' => '2022007',
-            'nama' => 'Eddy Vender',
-            'kode' => 'M',
-        ],
-        [
-            'pegawai' => '2022008',
-            'nama' => 'Sid Vicious',
-            'kode' => 'S',
-        ],
-        [
-            'pegawai' => '2022010',
-            'nama' => 'Anthony Kiedis',
-            'kode' => 'S',
-        ],
-    ];
-    $data = [
-        [
-            'kode' => 'Direktur',
-            'gaji' => 5000000,
-        ],
-        [
-            'kode' => 'Manajer',
-            'gaji' => 3500000,
-        ],
-        [
-            'kode' => 'Staff',
-            'gaji' => 1750000,
-        ],
-    ];
-    ?>
-
     <div class="container-fluid" style="margin-top: 80px;">
         <h3>DAFTAR GAJI PT UJUNG KULON</h3>
 
@@ -79,7 +40,7 @@
             </thead>
             <tbody>
                 @foreach ($pegawai as $p)
-                    <?php
+                    @php
                         $jabatan = '';
                         $tunjangan = 0;
                         $total = 0;
@@ -99,16 +60,17 @@
                             $gaji = $data[2]['gaji'];
                             $tunjangan = $data[2]['gaji'] * 0.6;
                             $total = $data[2]['gaji'] + $data[2]['gaji'] * 0.6;
-                        } ?>
+                        } 
+                    @endphp
+                        
                     <tr>
                         <td>{{ $p['nama'] }}</td>
-                        <td><?= $jabatan?></td>
-                        <td><?= 'Rp ' . number_format($gaji, 0, '.', ',');
-                        ?></td>
-                        <td><?= 'Rp ' . number_format($tunjangan, 0, '.', ',');
-                        ?></td>
-                        <td><?= 'Rp ' . number_format($total, 0, '.', ',');
-                        ?>
+                        <td>{{$jabatan}}</td>
+                        <td>{{'Rp ' . number_format($gaji, 0, '.', ',')}} 
+                        </td>
+                        <td>{{'Rp ' . number_format($tunjangan, 0, '.', ',')}} 
+                        </td>
+                        <td>{{'Rp ' . number_format($total, 0, '.', ',')}}
                         </td>
                     </tr>
                 @endforeach
